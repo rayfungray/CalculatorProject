@@ -3,6 +3,8 @@ var screen = document.querySelector('#screen');
 var equal = document.querySelector('#equals');
 var clear = document.querySelector('#clear');
 var posNeg = document.querySelector('#pos-neg');
+var body = document.getElementsByTagName('body');
+
 
 //Flag
 var lastIsOp = false;
@@ -33,6 +35,36 @@ document.getElementById('calculator').addEventListener('click', function(event) 
     console.log(components);
     console.log('CurrNum',currNum)
 });
+
+
+
+document.body.addEventListener('keypress',function(event){
+  console.log(event.keyCode);
+  if (event.keyCode >=49 && event.keyCode <= 57 ){
+    var num = event.keyCode - 48;
+    handleNumber(num.toString()); 
+  }else if (event.keyCode === 43 || event.keyCode === 61 ){
+    handleOperator('+');
+  } else if (event.keyCode === 45){
+    handleOperator('-');
+  } else if (event.keyCode === 42) {
+    handleOperator('*');
+  } else if (event.keyCode === 47) {
+    handleOperator('/');
+  } else if (event.keyCode === 46) {
+    handleDec();
+  }else if (event.keyCode === 13){
+    handleEqual();
+  } else if (event.keyCode === 96) {
+    handleClear();
+  }
+
+  console.log(components);
+  console.log('CurrNum', currNum)
+});
+
+
+
 
 function handleClear(){
     setScreen(0);
