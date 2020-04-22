@@ -57,6 +57,8 @@ document.body.addEventListener('keypress',function(event){
     handleEqual();
   } else if (event.keyCode === 96) {
     handleClear();
+  }else if(event.keyCode === 95){
+    handlePosNeg();
   }
 
   console.log(components);
@@ -187,7 +189,13 @@ function handlePosNeg(){
         currNum = '-';
         components.push(currOp);
         currOp = ''
-    }    
-    var newScreenText = components.join('') + currNum;
-    setScreen(newScreenText);
+    }
+
+    if(screen.innerText === '0'){
+      setScreen('-0');
+    }else{
+      var newScreenText = components.join('') + currNum;
+      setScreen(newScreenText);
+    }
+    
 }
