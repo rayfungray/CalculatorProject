@@ -10,7 +10,7 @@ var body = document.getElementsByTagName('body');
 var lastIsOp = false;
 var addDec = true;
 
-var currNum = '';
+var currNum = '0';
 var currOp = '';
 var components = [];
 
@@ -40,7 +40,7 @@ document.getElementById('calculator').addEventListener('click', function(event) 
 
 document.body.addEventListener('keypress',function(event){
   console.log(event.keyCode);
-  if (event.keyCode >=49 && event.keyCode <= 57 ){
+  if (event.keyCode >=48 && event.keyCode <= 57 ){
     var num = event.keyCode - 48;
     handleNumber(num.toString()); 
   }else if (event.keyCode === 43 || event.keyCode === 61 ){
@@ -178,24 +178,21 @@ function handleEqual(){
 }
 
 function handlePosNeg(){
-    if(currNum && currNum.startsWith('-')){
-    
-        currNum = currNum.slice(1);
-    
-    }else if(currNum){
-        currNum = '-' + currNum;
-    }else 
-    {
-        currNum = '-';
-        components.push(currOp);
-        currOp = ''
-    }
+  if(currNum && currNum.startsWith('-')){  
+    currNum = currNum.slice(1);
+  } else if(currNum){
+    currNum = '-' + currNum;
+  } else {
+    currNum = '-';
+    components.push(currOp);
+    currOp = ''
+  }
 
-    if(screen.innerText === '0'){
-      setScreen('-0');
-    }else{
-      var newScreenText = components.join('') + currNum;
-      setScreen(newScreenText);
-    }
-    
+  if(screen.innerText === '0'){
+    setScreen('-0');
+  }else{
+    var newScreenText = components.join('') + currNum;
+    setScreen(newScreenText);
+  }
+  
 }
